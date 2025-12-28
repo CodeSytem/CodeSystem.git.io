@@ -30,7 +30,14 @@
             z-index: 1;
             pointer-events: none;
         }
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 100; backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-glow);
+        }
 
+        .logo { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.2rem; letter-spacing: 3px; }
         header {
             position: relative;
             z-index: 10;
@@ -45,7 +52,7 @@
 
         h1 {
             font-family: 'Syncopate', sans-serif;
-            font-size: clamp(2rem, 8vw, 5rem);
+            font-size: clamp(2rem, 4vw, 2rem);
             text-transform: uppercase;
             letter-spacing: 15px;
             margin-bottom: 20px;
@@ -148,11 +155,15 @@
     </style>
 </head>
 <body>
+    <nav>
+        <div class="logo">BarberShoop S.I 2026</div>
+        <div style="color: var(--gold); font-size: 0.8rem;">EST. 2026</div>
+    </nav>
 
     <canvas id="bgCanvas"></canvas>
 
     <header>
-        <h1>Elite Cut</h1>
+        <h1>Peluqueria Ventura</h1>
         <p style="letter-spacing: 8px; font-weight: 300;">THE ART OF PRECISION</p>
         <div class="scroll-down">Desliza para explorar</div>
     </header>
@@ -163,6 +174,7 @@
             <div class="card-info">
                 <h3>Skin Fade</h3>
                 <p>Degradado extremo que comienza desde la piel. La definición máxima para un look moderno y limpio.</p>
+                <h2>$ 2.50 </h2>
             </div>
         </div>
 
@@ -171,6 +183,7 @@
             <div class="card-info">
                 <h3>Pompadour</h3>
                 <p>Volumen superior clásico con un toque contemporáneo. Estilo versátil para el caballero distinguido.</p>
+                <h2>$ 3.00 </h2>
             </div>
         </div>
 
@@ -179,6 +192,7 @@
             <div class="card-info">
                 <h3>Buzz Cut</h3>
                 <p>Minimalismo funcional. Un corte uniforme que resalta las facciones óseas y la estructura facial.</p>
+                <h2>$ 2.00 </h2>
             </div>
         </div>
 
@@ -187,6 +201,7 @@
             <div class="card-info">
                 <h3>Mullet Moderno</h3>
                 <p>Audacia y rebeldía. Corto en los laterales y largo atrás, reinventado con texturas actuales.</p>
+                <h2>$ 3.50 </h2>
             </div>
         </div>
     </div>
@@ -201,7 +216,7 @@
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
             particles = [];
-            for(let i=0; i<80; i++) {
+            for(let i=0; i<200; i++) {
                 particles.push({
                     x: Math.random() * width,
                     y: Math.random() * height,
