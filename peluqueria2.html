@@ -15,21 +15,38 @@
             --border-glow: rgba(212, 175, 55, 0.3);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        html {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
 
         body {
             background-color: var(--dark);
             color: white;
             font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
             min-height: 100vh;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+            position: relative;
         }
 
         canvas {
             position: fixed;
-            top: 0; left: 0;
+            top: 0; 
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 1;
             pointer-events: none;
+            display: block;
         }
         
         /* NAVBAR FIJADO - Se mantiene al hacer scroll */
@@ -41,10 +58,12 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center;
-            z-index: 1000; /* Mayor z-index para estar siempre encima */
+            z-index: 1000;
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-glow);
-            background: rgba(10, 10, 10, 0.8); /* Fondo semitransparente */
+            background: rgba(10, 10, 10, 0.8);
+            left: 0;
+            right: 0;
         }
 
         .logo { 
@@ -64,22 +83,34 @@
             align-items: center;
             text-align: center;
             background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
 
-        /* SOLO "Peluqueria Ventura" se adapta a móvil */
+        /* CORRECCIÓN: Título centrado y completo en móvil */
         h1 {
             font-family: 'Syncopate', sans-serif;
-            font-size: clamp(1.5rem, 8vw, 4rem); /* Cambiado a 8vw para mejor adaptación */
+            font-size: clamp(1.8rem, 9vw, 4rem); /* Aumentado para mejor legibilidad */
             text-transform: uppercase;
-            letter-spacing: clamp(5px, 3vw, 15px); /* Adapta el letter-spacing */
+            letter-spacing: clamp(3px, 2.5vw, 15px); /* Reducido para móvil */
             margin-bottom: 20px;
             background: linear-gradient(to right, #fff, var(--gold), #fff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: shine 5s linear infinite;
-            padding: 0 20px;
+            padding: 0 15px;
             text-align: center;
-            line-height: 1.2;
+            line-height: 1.1; /* Reducido para mejor ajuste */
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         @keyframes shine {
@@ -91,7 +122,8 @@
         header p {
             letter-spacing: 8px; 
             font-weight: 300;
-            font-size: 1rem; /* Tamaño fijo */
+            font-size: 1rem;
+            margin-top: 10px;
         }
 
         .container {
@@ -103,6 +135,8 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
             padding: 20px;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         /* CARD EFFECT PRO */
@@ -116,6 +150,7 @@
             backdrop-filter: blur(10px);
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             cursor: pointer;
+            width: 100%;
         }
 
         .card:hover {
@@ -147,6 +182,7 @@
             background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
             transform: translateY(100px);
             transition: transform 0.5s;
+            box-sizing: border-box;
         }
 
         .card:hover .card-info {
@@ -179,6 +215,145 @@
             40% {transform: translateY(-10px);}
             60% {transform: translateY(-5px);}
         }
+
+        /* CORRECCIÓN ESPECÍFICA PARA EL TÍTULO EN MÓVIL */
+        @media (max-width: 768px) {
+            html, body {
+                width: 100vw;
+                overflow-x: hidden;
+                position: relative;
+            }
+            
+            body {
+                width: 100vw;
+                max-width: 100vw;
+            }
+            
+            canvas {
+                width: 100vw;
+                height: 100vh;
+                left: 0;
+                right: 0;
+            }
+            
+            nav {
+                width: 100vw;
+                left: 0;
+                right: 0;
+                padding: 15px 20px;
+            }
+            
+            header {
+                width: 100vw;
+                padding: 0 10px; /* Reducido para dar más espacio al texto */
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            /* CORRECCIÓN PRINCIPAL: Ajustes específicos para el título */
+            h1 {
+                font-size: clamp(1.6rem, 7.5vw, 2.5rem); /* Tamaño optimizado */
+                letter-spacing: clamp(2px, 1.8vw, 10px); /* Espaciado reducido */
+                line-height: 1.15; /* Ajuste fino */
+                padding: 0 5px; /* Padding mínimo */
+                margin: 0 auto 15px; /* Centrado */
+                width: 95%; /* Un poco menos del 100% para margen */
+                max-width: 95%;
+                display: block;
+                text-align: center;
+                word-break: keep-all; /* Evita que rompa palabras innecesariamente */
+                white-space: normal; /* Permite múltiples líneas si es necesario */
+                overflow: visible;
+            }
+            
+            /* Asegurar que "Peluqueria Ventura" quede en dos líneas si es necesario */
+            h1 br {
+                display: block;
+                content: "";
+                margin-top: 5px;
+            }
+            
+            .container {
+                width: 100vw;
+                max-width: 100vw;
+                padding: 15px;
+                margin: 0 auto 80px;
+            }
+            
+            .card {
+                width: 100%;
+            }
+            
+            header p {
+                font-size: 0.9rem;
+                letter-spacing: 6px;
+                padding: 0 10px;
+                text-align: center;
+                width: 100%;
+            }
+            
+            .scroll-down {
+                font-size: 0.65rem;
+                letter-spacing: 4px;
+                bottom: 20px;
+            }
+        }
+
+        /* Ajustes para pantallas muy pequeñas */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: clamp(1.4rem, 6.5vw, 2rem);
+                letter-spacing: clamp(1px, 1.5vw, 8px);
+                line-height: 1.2;
+                padding: 0 8px;
+                width: 100%;
+            }
+            
+            header {
+                padding: 0 8px;
+            }
+            
+            nav {
+                padding: 12px 15px;
+            }
+            
+            .logo {
+                font-size: 0.9rem;
+            }
+            
+            header p {
+                font-size: 0.85rem;
+                letter-spacing: 4px;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .card {
+                height: 380px;
+            }
+        }
+
+        /* Para iPhone y dispositivos con notches */
+        @supports (padding: max(0px)) {
+            header {
+                padding-left: max(10px, env(safe-area-inset-left));
+                padding-right: max(10px, env(safe-area-inset-right));
+            }
+            
+            h1 {
+                padding-left: max(5px, env(safe-area-inset-left));
+                padding-right: max(5px, env(safe-area-inset-right));
+            }
+            
+            .container {
+                padding-left: max(10px, env(safe-area-inset-left));
+                padding-right: max(10px, env(safe-area-inset-right));
+            }
+        }
     </style>
 </head>
 <body>
@@ -190,7 +365,8 @@
     <canvas id="bgCanvas"></canvas>
 
     <header>
-        <h1>Peluqueria Ventura</h1>
+        <!-- CORRECCIÓN: Texto dividido en dos líneas para móvil -->
+        <h1>PELUQUERÍA<br>VENTURA</h1>
         <p style="letter-spacing: 8px; font-weight: 300;">THE ART OF PRECISION</p>
         <div class="scroll-down">Desliza para explorar</div>
     </header>
@@ -240,6 +416,7 @@
         let width, height, particles = [];
 
         function init() {
+            // Usar 100vw para asegurar ancho completo
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
             particles = [];
@@ -252,6 +429,10 @@
                     opacity: Math.random()
                 });
             }
+            
+            // Forzar ancho completo del body
+            document.body.style.width = '100%';
+            document.body.style.maxWidth = '100%';
         }
 
         function animate() {
@@ -289,10 +470,44 @@
             });
         });
 
-        window.addEventListener('resize', init);
+        // Manejo mejorado del resize
+        function handleResize() {
+            init();
+            // Asegurar que todo ocupe el 100% del viewport
+            document.documentElement.style.width = '100%';
+            document.body.style.width = '100%';
+            canvas.style.width = '100%';
+            
+            // Ajustar título dinámicamente
+            const h1 = document.querySelector('h1');
+            if (window.innerWidth <= 768) {
+                // Para móvil, asegurar que esté centrado
+                h1.style.textAlign = 'center';
+                h1.style.marginLeft = 'auto';
+                h1.style.marginRight = 'auto';
+            }
+        }
+
+        window.addEventListener('resize', handleResize);
+        
+        // Forzar ancho completo al cargar
+        window.addEventListener('load', function() {
+            init();
+            document.documentElement.style.width = '100%';
+            document.body.style.width = '100%';
+            canvas.style.width = '100%';
+            
+            // Centrar título en móvil
+            if (window.innerWidth <= 768) {
+                const h1 = document.querySelector('h1');
+                h1.style.textAlign = 'center';
+                h1.style.marginLeft = 'auto';
+                h1.style.marginRight = 'auto';
+            }
+        });
+        
         init();
         animate();
     </script>
 </body>
 </html>
-
